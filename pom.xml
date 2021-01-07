@@ -31,11 +31,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
-<!--                    <parallel>all</parallel>-->
-<!--                    <threadCount>10</threadCount>-->
-
-<!--                    <forkCount>4</forkCount>-->
-<!--                    <reuseForks>false</reuseForks>-->
                     <argLine>--enable-preview</argLine>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
