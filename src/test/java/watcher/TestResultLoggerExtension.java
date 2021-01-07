@@ -1,8 +1,10 @@
 package watcher;
 
 import org.junit.jupiter.api.extension.*;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tests.DriverManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,9 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback, BeforeEachCallback {
+import static watcher.Screenshot.takeScreenshot;
+
+public class TestResultLoggerExtension extends DriverManager implements TestWatcher, AfterAllCallback, BeforeEachCallback {
     private static final Logger LOG = LoggerFactory.getLogger(TestResultLoggerExtension.class);
     private List<TestResultStatus> testResultsStatus = new ArrayList<>();
 
@@ -23,6 +27,7 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback,
     public void afterAll(ExtensionContext context) {
         Map<TestResultStatus, Long> summary = testResultsStatus.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        if (context.getExecutionException().isPresent()) takeScreenshot(context.getDisplayName(), getDriver());
         LOG.info("TESTS SUMMARY: \"{}\" -> {}", context.getDisplayName(), summary.toString());
     }
 

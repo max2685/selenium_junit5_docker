@@ -14,7 +14,7 @@ public class TestOne extends DriverManager {
         driver.get("http://delfi.lv");
         final int firstNumber = 2;
         final int secondNumber = 5;
-        assertEquals(7, firstNumber + secondNumber, "Sum is incorrect");
+        assertEquals(6, firstNumber + secondNumber, "Sum is incorrect");
     }
 
     @Test

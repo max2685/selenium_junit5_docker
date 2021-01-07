@@ -10,7 +10,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    protected WebDriver driver;
+    public WebDriver driver;
+
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     @BeforeEach
     public void setupDriver() {
