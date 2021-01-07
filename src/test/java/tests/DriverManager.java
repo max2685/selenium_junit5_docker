@@ -12,10 +12,6 @@ import java.net.URL;
 public class DriverManager {
     public WebDriver driver;
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     @BeforeEach
     public void setupDriver() {
 

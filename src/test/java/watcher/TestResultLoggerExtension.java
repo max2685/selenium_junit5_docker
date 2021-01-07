@@ -1,13 +1,17 @@
 package watcher;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tests.DriverManager;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +31,7 @@ public class TestResultLoggerExtension extends DriverManager implements TestWatc
     public void afterAll(ExtensionContext context) {
         Map<TestResultStatus, Long> summary = testResultsStatus.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-//        if (context.getExecutionException().isPresent()){
-//            takeScreenshot(context.getDisplayName(), getDriver());
-//        }
-
-//        File screenshotAs = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
-//        Allure.addAttachment("Screenshot", FileUtils.openInputStream(screenshotAs));
+        Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         LOG.info("TESTS SUMMARY: \"{}\" -> {}", context.getDisplayName(), summary.toString());
     }
 
