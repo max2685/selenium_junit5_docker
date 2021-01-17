@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.Getter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    public WebDriver driver;
+    @Getter public WebDriver driver;
 
     @BeforeEach
     public void setupDriver() {

@@ -1,12 +1,11 @@
 package watcher;
 
-import org.junit.jupiter.api.extension.AfterAllCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.TestWatcher;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tests.DriverManager;
+import utils.Screenshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class TestResultLoggerExtension extends DriverManager implements TestWatcher, AfterAllCallback, BeforeEachCallback {
+public class TestResultLoggerExtension extends DriverManager implements TestWatcher, AfterAllCallback, BeforeEachCallback, AfterTestExecutionCallback {
     private static final Logger LOG = LoggerFactory.getLogger(TestResultLoggerExtension.class);
     private List<TestResultStatus> testResultsStatus = new ArrayList<>();
 
@@ -24,10 +23,16 @@ public class TestResultLoggerExtension extends DriverManager implements TestWatc
     }
 
     @Override
+    @SneakyThrows
+    public void afterTestExecution(ExtensionContext extensionContext) {
+        if (extensionContext.getExecutionException().isPresent()) Screenshot.takeScreenshot(getDriver());
+        getDriver().quit();
+    }
+
+    @Override
     public void afterAll(ExtensionContext context) {
         Map<TestResultStatus, Long> summary = testResultsStatus.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-//        Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         LOG.info("TESTS SUMMARY: \"{}\" -> {}", context.getDisplayName(), summary.toString());
     }
 
