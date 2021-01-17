@@ -4,7 +4,7 @@ pipeline {
         stage('Docker compose up') {
             steps {
                 sh 'export PATH=$PATH:/usr/local/bin'
-                sh 'sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose up -d --scale chrome=3'
+                sh 'docker-compose up -d --scale chrome=3'
             }
         }
         stage('Tests') {
