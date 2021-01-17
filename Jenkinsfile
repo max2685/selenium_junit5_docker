@@ -4,6 +4,7 @@ pipeline {
         stage('Docker compose up') {
             steps {
 //                sh 'export PATH=$PATH:/usr/local/bin'
+                sh 'cd /Users/maksimtolkacev/IdeaProjects/selenium_junit5_docker'
                 sh 'docker-compose up -d --scale chrome=3'
             }
         }
