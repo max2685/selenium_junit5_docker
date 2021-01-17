@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Docker compose up') {
             steps {
-//              sh 'export PATH=$PATH:/usr/local/bin'
-                sh 'nano /usr/local/bin/docker-compose up -d --scale chrome=3'
+//                sh 'export PATH=$PATH:/usr/local/bin'
+                sh 'docker-compose up -d --scale chrome=3'
             }
         }
         stage('Tests') {
