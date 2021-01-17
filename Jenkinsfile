@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Docker compose up') {
             steps {
-                sh 'export PATH=$PATH:/usr/local/bin'
+//                sh 'export PATH=$PATH:/usr/local/bin'
                 sh 'docker-compose up -d --scale chrome=3'
             }
         }
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Docker compose down') {
             steps {
-                sh 'export PATH=$PATH:/usr/local/bin'
+//                sh 'export PATH=$PATH:/usr/local/bin'
                 sh 'docker-compose up -d --scale chrome=3'
                 }
             }
