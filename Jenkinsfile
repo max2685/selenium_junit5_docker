@@ -1,12 +1,13 @@
 pipeline {
     agent any
+    PATH = "$PATH:/usr/local/bin"
     stages {
         stage('Docker compose up') {
             steps {
 //                sh 'export PATH=$PATH:/usr/local/bin'
 //                sh 'docker --version'
 //                sh 'cd /usr/local/Cellar/docker-compose/1.27.4_2'
-                sh '/usr/bin/docker-compose up -d --scale chrome=3'
+                sh "docker-compose up -d --scale chrome=3"
             }
         }
         stage('Tests') {
