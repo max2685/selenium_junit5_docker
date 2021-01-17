@@ -10,19 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestOne extends DriverManager {
 
     @Test
-    public void sumTest() {
-        driver.get("http://delfi.lv");
-        final int firstNumber = 2;
-        final int secondNumber = 5;
-        assertEquals(6, firstNumber + secondNumber, "Sum is incorrect");
-    }
-
-    @Test
     public void sumTest1() {
         driver.get("http://delfi.lv");
         final int firstNumber = 2;
         final int secondNumber = 5;
-        assertEquals(7, firstNumber + secondNumber, "Sum is incorrect");
+        assertEquals(6, firstNumber + secondNumber, "Sum is incorrect");
     }
 
     @Test
@@ -35,22 +27,6 @@ public class TestOne extends DriverManager {
 
     @Test
     public void sumTest3() {
-        driver.get("http://delfi.lv");
-        final int firstNumber = 2;
-        final int secondNumber = 5;
-        assertEquals(7, firstNumber + secondNumber, "Sum is incorrect");
-    }
-
-    @Test
-    public void sumTest4() {
-        driver.get("http://delfi.lv");
-        final int firstNumber = 2;
-        final int secondNumber = 5;
-        assertEquals(7, firstNumber + secondNumber, "Sum is incorrect");
-    }
-
-    @Test
-    public void sumTest5() {
         driver.get("http://delfi.lv");
         final int firstNumber = 2;
         final int secondNumber = 5;

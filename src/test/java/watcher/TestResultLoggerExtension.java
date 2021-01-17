@@ -1,6 +1,9 @@
 package watcher;
 
-import org.junit.jupiter.api.extension.*;
+import org.junit.jupiter.api.extension.AfterAllCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tests.DriverManager;
@@ -13,17 +16,12 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class TestResultLoggerExtension extends DriverManager implements TestWatcher, AfterAllCallback, BeforeEachCallback, AfterTestExecutionCallback {
+public class TestResultLoggerExtension extends DriverManager implements TestWatcher, AfterAllCallback, BeforeEachCallback {
     private static final Logger LOG = LoggerFactory.getLogger(TestResultLoggerExtension.class);
     private List<TestResultStatus> testResultsStatus = new ArrayList<>();
 
     private enum TestResultStatus {
         SUCCESSFUL, ABORTED, FAILED, DISABLED
-    }
-
-    @Override
-    public void afterTestExecution(ExtensionContext extensionContext) {
-        if (extensionContext.getExecutionException().isPresent()) Screenshot.takeScreenshot(driver);
     }
 
     @Override
@@ -59,6 +57,7 @@ public class TestResultLoggerExtension extends DriverManager implements TestWatc
 
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
+        Screenshot.takeScreenshot(driver);
         LOG.warn("TEST FAILED");
         testResultsStatus.add(TestResultStatus.FAILED);
     }

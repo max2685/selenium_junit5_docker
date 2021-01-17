@@ -3,6 +3,7 @@ package tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -10,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    public static RemoteWebDriver driver;
+    protected WebDriver driver;
 
     @BeforeEach
     public void setupDriver() {
