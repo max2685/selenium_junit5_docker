@@ -1,6 +1,5 @@
 package watcher;
 
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +22,9 @@ public class TestResultLoggerExtension extends DriverManager implements TestWatc
     }
 
     @Override
-    @SneakyThrows
     public void afterTestExecution(ExtensionContext extensionContext) {
-        if (extensionContext.getExecutionException().isPresent()) Screenshot.takeScreenshot(getDriver());
-        getDriver().quit();
+        if (extensionContext.getExecutionException().isPresent()) Screenshot.takeScreenshot(driver);
+        driver.quit();
     }
 
     @Override

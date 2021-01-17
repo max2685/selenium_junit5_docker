@@ -1,9 +1,6 @@
 package tests;
 
-import lombok.Getter;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -11,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    @Getter public WebDriver driver;
+    public static RemoteWebDriver driver;
 
     @BeforeEach
     public void setupDriver() {
@@ -35,14 +32,9 @@ public class DriverManager {
         String completeUrl = "http://" + host + ":4444/wd/hub";
 //        dc.setCapability("name", testName);
         try {
-            this.driver = new RemoteWebDriver(new URL(completeUrl), dc);
+            driver = new RemoteWebDriver(new URL(completeUrl), dc);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-    }
-
-    @AfterEach
-    public void quitDriver(){
-        driver.quit();
     }
 }
