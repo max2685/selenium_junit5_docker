@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Docker compose up') {
             steps {
-                sh 'docker'
-//                sh 'export PATH=$PATH:/usr/local/bin'
+                sh 'export PATH=$PATH:/usr/local/bin'
+                sh 'docker --version'
 //                sh 'cd /usr/local/Cellar/docker-compose/1.27.4_2'
 //                sh 'docker-compose up -d --scale chrome=3'
             }
