@@ -24,7 +24,6 @@ public class TestResultLoggerExtension extends DriverManager implements TestWatc
     @Override
     public void afterTestExecution(ExtensionContext extensionContext) {
         if (extensionContext.getExecutionException().isPresent()) Screenshot.takeScreenshot(driver);
-        driver.quit();
     }
 
     @Override

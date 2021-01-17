@@ -1,5 +1,7 @@
 package tests;
 
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -36,5 +38,10 @@ public class DriverManager {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    @AfterEach
+    public void quitDriver(){
+        driver.quit();
     }
 }
