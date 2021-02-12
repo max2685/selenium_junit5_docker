@@ -2,12 +2,14 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import watcher.TestResultLoggerExtension;
+import utils.DriverManager;
+import utils.watcher.TestResultLoggerExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
-public class TestTwo extends DriverManager{
+public class SecondTest extends DriverManager {
+
     @Test
     public void sumTest4() {
         driver.get("http://delfi.lv");

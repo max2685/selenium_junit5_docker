@@ -1,7 +1,7 @@
-package tests;
+package utils;
 
 
-import org.junit.jupiter.api.AfterEach;
+import lombok.Getter;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverManager {
-    protected WebDriver driver;
+    @Getter protected WebDriver driver;
 
     @BeforeEach
     public void setupDriver() {
@@ -41,8 +41,9 @@ public class DriverManager {
         }
     }
 
-    @AfterEach
-    public void quitDriver(){
-        driver.quit();
-    }
+//    @AfterEach
+//    public void quitDriver(){
+//
+//        driver.quit();
+//    }
 }
